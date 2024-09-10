@@ -1,11 +1,19 @@
 import pandas as pd
 import csv
 import cx_Oracle
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load the .env file
+
+
+
+
 
 # dclaring connection string
 dsn = cx_Oracle.makedsn("localhost", 1522, "XE")  
-username = "C##anthony"
-password = "Passw0rd"
+username = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
 
 connection = cx_Oracle.connect(user=username, password=password, dsn=dsn)
 cursor = connection.cursor()
